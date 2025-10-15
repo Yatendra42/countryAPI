@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import SearchBar from "./components/SerachBar/SearchBar";
-import Flags from "./components/flags/flags";
+import Flags from "./components/Flags/Flags"
+
+
 import "./App.scss";
 
 function App() {
