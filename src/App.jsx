@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import SearchBar from "./components/SerachBar/SearchBar";
-import Flags from "./components/Flags/Flags.jsx";
+import SearchBar from "@/components/SerachBar/SearchBar";
+import { Flags } from '@/components/Flags/Flags.jsx';
+
 
 
 import "./App.scss";
@@ -61,8 +62,6 @@ useEffect(() => {
   (Array.isArray(c.capital) ? c.capital.join(" ").toLowerCase().includes(search.toLowerCase()) : c.capital?.toLowerCase().includes(search.toLowerCase()))
 );
       setTotalLength(filtered.length);
-
-
       setCountries(filtered);
       setError(filtered.length === 0 ? "No country found" : null);
    
