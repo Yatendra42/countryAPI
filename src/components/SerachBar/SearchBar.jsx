@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
+
+
+
+
 
 function SearchBar({ value, onChange }) {
+
+
   return (
     <>
       <form onSubmit={e => e.preventDefault()}>

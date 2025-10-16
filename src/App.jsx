@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import SearchBar from "@/components/SerachBar/SearchBar";
 import Flags from '@/components/Flags/Flags.jsx';
+import { getAllCountries } from "@/api/countryService";
 
 
 
@@ -11,50 +12,31 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [allCountries, setAllCountries] = useState([]);
   const [totalLength, setTotalLength] = useState(false);
-  const [loading, setLoading] = useState(false);
+  //const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
  
 
+   useEffect(() => {
+  const fetchData = async () => {
+    const data = await getAllCountries();
+    const sorted = data.sort((a, b) =>
+      a.name.common.localeCompare(b.name.common)
+    );
+    setCountries(sorted);
+    setAllCountries(sorted);
+    console.log("Fetched & sorted:", sorted);
+  };
 
-const handleCountry = async (e) => { 
- const value = e.target.value;
- setSearch(value);
-if(!value){ setTotalLength(false)};
-}
-
-
-useEffect(() => {
-
-    fetch("https://restcountries.com/v3.1/independent?status=true")
-      .then(res => {
-        if (!res.ok) throw new Error("Failed to fetch countries");
-        return res.json();
-      })
-      .then(data => {
-        setCountries(data.sort((a, b) => (a.name?.common).localeCompare(b.name?.common)));  
-         console.log(data);
-        setAllCountries(data.sort((a, b) => (a.name?.common).localeCompare(b.name?.common)));
-        totalLength(data.length);
-       
-      })
-      .catch(err => {
-        setCountries([]);
-        
-        setError(err.message);
-      });
-  
- 
+  fetchData();
 }, []);
 
 
-  // Debounce filter when search changes
-  useEffect(() => {
- 
-      if (!search) {
-        setCountries(allCountries);
-        setError(null);
-        return;
-      }
+  const handleCountry = async (e) => { 
+    const value = e.target.value;
+    setSearch(value);
+   
+    console.log("Search input:", value);
+
 
    const filtered = allCountries.filter(c =>
   c.name?.common?.toLowerCase().includes(search.toLowerCase()) ||
@@ -67,10 +49,16 @@ useEffect(() => {
    
 
 
-  }, [search, allCountries]);
-
+    
+      if(value.length === 0){
+       setTotalLength(0)
+      }
 
   
+  }
+
+
+
 
   return (
     <>
@@ -94,10 +82,10 @@ useEffect(() => {
             <SearchBar value={search} onChange={handleCountry} />
           </div>
           <div className="results">
-            <Flags countries={countries} />
+            <Flags countries={countries}  />
           </div>
         </main>
-        <footer>
+        <footer>sss
           <p>&copy; 2024 Country API</p>
         </footer>
       </div>
