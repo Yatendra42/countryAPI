@@ -1,0 +1,146 @@
+.country-detail {
+  padding: 2rem;
+  text-align: center;
+  height: 100%;
+  overflow: auto;
+}
+
+.back-btn {
+  text-decoration: none;
+  color: #3498db;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.country-inner-card {
+  background: rgb(247 247 247 / 100%);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  overflow: hidden;
+
+  &__wrap {
+    padding: 0 1rem 1rem 1rem;
+  }
+
+  &__data {
+    margin-top: 1.5rem;
+    h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+          color: #838383;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      li {
+        flex: 1;
+      }
+    }
+
+    .card {
+      display: flex;
+      height: 100%;
+      h3 {
+        font-size: 16px;
+        font-weight: 400;
+        color: #838383;
+      }
+       p {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+
+      .icon {
+        height: 40px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 16px;
+        border-radius: 8px;
+        background: #e0e0e0;
+        margin-top: 5px;
+        svg {
+          width: 25px;
+          height: 25px;
+          fill: currentColor;
+        }
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.country-flag {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__blur {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__image {
+    position: relative;
+    box-shadow: 0px 0px 13px 3px rgb(0 0 0 / 12%);
+    img {
+      height: 200px;
+    }
+  }
+}
+
+.country-title {
+  h2 {
+    font-size: 50px;
+  }
+}
+
+
+.back-btn-wrap {
+    margin-top: 20px  !important;
+      max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+display: flex;
+}
+
+
+ @media (max-width: 768px) { 
+
+    .country-flag__image {
+         img {
+            height: 140px;
+    }
+}
+
+    .back-btn-wrap { 
+        .button--gray {
+            width: 100%;
+        }
+    }
+ }

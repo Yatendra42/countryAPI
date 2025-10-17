@@ -4,6 +4,42 @@
     box-sizing: border-box;
 }
 
+// Global Styles here
+
+.weight-thin {
+    font-weight: 300;
+}
+
+.card {
+    background: rgb(247, 247, 247);
+    border-radius: 8px;
+    box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.1);
+    padding: 10px;    
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+}
+
+.button--gray {
+    padding: .625rem 1.25rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 0 0 2px #444;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    background: #444;
+    &:hover {
+        background: transparent;
+        color: #444;
+    }
+}
+
+
+
+
 .wrapper {
     max-width: 1440px;
     width: 100%;
@@ -19,6 +55,8 @@
         align-items: center;
         justify-content: center;
         padding: 20px;
+        flex-direction: column;
+        text-align: center;
 
     }
 
@@ -26,6 +64,8 @@
         flex: 1;
         background-color: #fff9ed;  
         padding: 20px 50px;
+        height: calc(100vh - 176px);
+
         .main-content {
             display: flex;
             justify-content: space-between;
@@ -61,3 +101,24 @@
     
 }
 
+ @media (max-width: 768px) {
+    .wrapper {
+        main {
+            padding: 10px 20px;
+            .main-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .search-input {
+                width: 100%;
+            }
+        }
+    }
+
+    .search-bar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+
+ }

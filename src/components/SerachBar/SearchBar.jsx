@@ -9,7 +9,7 @@ function SearchBar({ value, onChange }) {
 
   return (
     <>
-      <form onSubmit={e => e.preventDefault()}>
+      <form className='search-bar' onSubmit={e => e.preventDefault()}>
         <input
           type="text"
           placeholder="Enter country name"

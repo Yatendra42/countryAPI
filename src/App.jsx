@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import SearchBar from "@/components/SerachBar/SearchBar";
 import Flags from '@/components/Flags/Flags.jsx';
 import { getAllCountries } from "@/api/countryService";
+import { Routes, Route } from "react-router-dom";
+import CountryDetail from "@/components/CountryDetail/CountryDetail.jsx";
 
 
 
@@ -12,8 +14,9 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [allCountries, setAllCountries] = useState([]);
   const [totalLength, setTotalLength] = useState(false);
-  //const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const getDateYear = new Date().getFullYear();
  
 
    useEffect(() => {
@@ -48,10 +51,10 @@ function App() {
       setError(filtered.length === 0 ? "No country found" : null);
    
 
-
     
       if(value.length === 0){
-       setTotalLength(0)
+       setTotalLength(0);
+        setCountries(countries);
       }
 
   
@@ -65,28 +68,46 @@ function App() {
       <div className="wrapper">
         <header>
           <h1>Country API</h1>
+          <p>Discover information about countries around the world</p>
         </header>
-        <main>
-          <div className="main-content">
-            <div>
-              <h2>Country Information</h2>
-              <p>Get information about countries around the world.</p>
-            </div>
 
-            {totalLength > 0 && (
-              <div className="results-count">
-                <p>{totalLength} countries found</p>
-              </div>
-            )}
-            
-            <SearchBar value={search} onChange={handleCountry} />
-          </div>
-          <div className="results">
-            <Flags countries={countries}  />
-          </div>
-        </main>
-        <footer>sss
-          <p>&copy; 2024 Country API</p>
+        <main>
+          <Routes>
+            <Route path="/" element={
+          <>
+               <div className="main-content">
+                <div>
+                  <h2>Country Information</h2>
+                  <p>Get information about countries around the world.</p>
+                </div>
+
+                {totalLength > 0 && (
+                  <div className="results-count">
+                    <p>{totalLength} countries found</p>
+                  </div>
+                )}
+
+                  
+
+                <SearchBar value={search} onChange={handleCountry} />
+
+                 </div>
+
+                <div className="results">
+                  <Flags
+                    countries={countries}
+                    loading={loading}
+                    error={error}
+                  />
+                </div>
+          </>
+           
+            } />
+            <Route path="/country/:code" element={<CountryDetail />} />
+          </Routes>
+         </main>
+        <footer>
+          <p>&copy; {getDateYear} Country API by Yatendra Jain</p>
         </footer>
       </div>
     </>
@@ -94,4 +115,4 @@ function App() {
 }
 
 export default App;
-          <p>&copy; 2024 Country API</p>
+        
