@@ -40,12 +40,26 @@ function App() {
    
     console.log("Search input:", value);
 
+        const filtered = allCountries.filter(c => {
+          const searchTerm = search.toLowerCase();
 
-   const filtered = allCountries.filter(c =>
-  c.name?.common?.toLowerCase().includes(search.toLowerCase()) ||
-  c.region?.toLowerCase().includes(search.toLowerCase()) ||
-  (Array.isArray(c.capital) ? c.capital.join(" ").toLowerCase().includes(search.toLowerCase()) : c.capital?.toLowerCase().includes(search.toLowerCase()))
-);
+          const name = c.name?.common?.toLowerCase() || "";
+          const region = c.region?.toLowerCase() || "";
+          const capital = Array.isArray(c.capital)
+            ? c.capital.join(" ").toLowerCase()
+            : c.capital?.toLowerCase() || "";
+          const languages = Object.values(c.languages || {})
+            .join(" ")
+            .toLowerCase();
+
+          return (
+            name.includes(searchTerm) ||
+            region.includes(searchTerm) ||
+            capital.includes(searchTerm) ||
+            languages.includes(searchTerm)
+          );
+        });
+        
       setTotalLength(filtered.length);
       setCountries(filtered);
       setError(filtered.length === 0 ? "No country found" : null);
