@@ -76,7 +76,7 @@ function App() {
             <Route path="/" element={
           <>
                <div className="main-content">
-                <div>
+                <div className="country-info">
                   <h2>Country Information</h2>
                   <p>Get information about countries around the world.</p>
                 </div>
