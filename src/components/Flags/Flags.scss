@@ -10,15 +10,21 @@
 
 .country-card {
     border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
+   
+;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+  
+  
     background-color: #fff;
     flex: 0 1 300px;
     color: #333;
-    transition: all 0.3s ease;
+ 
+    border-radius: 20px;
+    width: 100%;
+    padding: 24px 24px 20px;
+    box-shadow: 0 6px 12px rgba(30, 10, 58, .04);
+    transition: all ease .35s ;
+    border: none;
  
     &:hover {
         transform: scale(1.05);

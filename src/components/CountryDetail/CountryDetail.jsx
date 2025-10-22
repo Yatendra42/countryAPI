@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link  } from "react-router-dom";
 import { getAllCountries } from "@/api/countryService";
 import "./CountryDetail.scss";
+import { useCountries } from "@/context/CountryContext";
 
 function CountryDetail() {
   const code = useParams();
   const [country, setCountry] = useState(null);
+  const { allCountries } = useCountries();
+
 
   useEffect(() => {
     const fetchCountry = async () => {
-      const data = await getAllCountries();
-      const foundCountry = data.find((c) => c.cca3 === code.code);
+     // const data = await getAllCountries();
+      const foundCountry = allCountries.find((c) => c.cca3 === code.code);
       setCountry(foundCountry);
     };
 

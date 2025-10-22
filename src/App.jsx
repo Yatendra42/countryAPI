@@ -4,6 +4,8 @@ import Flags from '@/components/Flags/Flags.jsx';
 import { getAllCountries } from "@/api/countryService";
 import { Routes, Route } from "react-router-dom";
 import CountryDetail from "@/components/CountryDetail/CountryDetail.jsx";
+import { useCountries } from "@/context/CountryContext";
+
 
 
 
@@ -12,26 +14,25 @@ import "./App.scss";
 function App() {
   const [search, setSearch] = useState("");
   const [countries, setCountries] = useState([]);
-  const [allCountries, setAllCountries] = useState([]);
+ // const [allCountries, setAllCountries] = useState([]);
   const [totalLength, setTotalLength] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const getDateYear = new Date().getFullYear();
  
+const { allCountries } = useCountries();
 
-   useEffect(() => {
-  const fetchData = async () => {
-    const data = await getAllCountries();
-    const sorted = data.sort((a, b) =>
-      a.name.common.localeCompare(b.name.common)
-    );
-    setCountries(sorted);
-    setAllCountries(sorted);
-    console.log("Fetched & sorted:", sorted);
-  };
-
-  fetchData();
-}, []);
+  
+useEffect(() => {
+    if (allCountries && allCountries.length > 0) {
+      const sorted = [...allCountries].sort((a, b) =>
+        a.name.common.localeCompare(b.name.common)
+      );
+      setCountries(sorted);
+      console.log("Fetched & sorted:", sorted);
+    }
+  }, [allCountries]);
+  
 
 
   const handleCountry = async (e) => { 
