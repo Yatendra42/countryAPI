@@ -82,8 +82,8 @@ useEffect(() => {
     <>
       <div className="wrapper">
         <header>
-          <h1>Country API</h1>
-          <p>Discover information about countries around the world</p>
+          <h1>The World Journal</h1>
+          <p>Uncover facts and details about countries worldwide.</p>
         </header>
 
         <main>
